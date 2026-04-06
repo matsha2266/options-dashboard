@@ -1,30 +1,35 @@
 from dash import html, dcc
+import dash_bootstrap_components as dbc
 
-def create_layout():
-    return html.Div([
-        html.H1("Options Trading Dashboard", style={"textAlign":"center"}),
+layout = dbc.Container([
 
-        dcc.Tabs([
-            dcc.Tab(label="Greeks Visualizer", children=[
-                html.Div([
-                    dcc.Input(id="ticker", value="AAPL"),
-                    dcc.Dropdown(
-                        id="greek",
-                        options=[{"label":g,"value":g} for g in ["Delta","Gamma","Vega"]],
-                        value="Delta"
-                    ),
-                    dcc.Graph(id="greek-chart")
-                ])
-            ]),
+    html.H2("Strategy Builder"),
 
-            dcc.Tab(label="Options Chain", children=[
-                html.Div([
-                    dcc.Graph(id="options-table")
-                ])
-            ]),
+    dbc.Row([
+        dbc.Col([
+            html.Label("Strategy"),
+            dcc.Dropdown(
+                id="strategy",
+                options=[
+                    {"label": "Call", "value": "call"},
+                    {"label": "Put", "value": "put"},
+                    {"label": "Bull Spread", "value": "bull_spread"}
+                ],
+                value="call"
+            )
+        ], width=4),
 
-            dcc.Tab(label="Stock Price", children=[
-                dcc.Graph(id="price-chart")
-            ])
-        ])
-    ])
+        dbc.Col([
+            html.Label("Strike"),
+            dcc.Slider(id="strike", min=50, max=200, value=100)
+        ], width=4),
+
+        dbc.Col([
+            html.Label("Premium"),
+            dcc.Slider(id="premium", min=1, max=20, value=5)
+        ], width=4),
+    ], className="mb-4"),
+
+    dcc.Graph(id="pnl-chart")
+
+], fluid=True)

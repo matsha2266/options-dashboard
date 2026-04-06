@@ -16,7 +16,29 @@ h2 {
     padding: 10px;
 }
 
+/* Dropdown container */
 .Select-control {
     background-color: #1f2937 !important;
     color: white !important;
+    border: 1px solid #374151 !important;
+}
+
+/* Dropdown menu */
+.Select-menu-outer {
+    background-color: #1f2937 !important;
+}
+
+/* Selected value */
+.Select-value-label {
+    color: white !important;
+}
+
+/* Hover options */
+.VirtualizedSelectOption {
+    background-color: #1f2937 !important;
+    color: white !important;
+}
+
+.VirtualizedSelectFocusedOption {
+    background-color: #374151 !important;
 }
