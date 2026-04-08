@@ -8,9 +8,15 @@ def create_sidebar():
 
         dcc.Input(
             id="ticker-input",
+            className="ticker-input",
             value="AAPL",
             debounce=True,
-            style={"width": "100%", "margin-bottom": "10px"}
+            style={
+                "width": "100%",
+                "margin-bottom": "10px",
+                "color": "#f9fafb",
+                "borderRadius": "6px"
+            }
         ),
 
         dbc.Nav([
@@ -18,6 +24,8 @@ def create_sidebar():
             dbc.NavLink("Options Analytics", href="/options", active="exact"),
             dbc.NavLink("PnL Strategy Builder", href="/pnl", active="exact"),
             dbc.NavLink("Price Chart", href="/chart", active="exact"),
+            dbc.NavLink("Greek Heatmaps", href="/greeks", active="exact"),
+            dbc.NavLink("Learn", href="/learn", active="exact"),
         ], vertical=True, pills=True)
 
     ], style={
@@ -27,5 +35,6 @@ def create_sidebar():
         "bottom": 0,
         "width": "16rem",
         "padding": "2rem 1rem",
-        "background-color": "#111827"
+        "background-color": "#111827",
+        "overflowY": "auto"
     })

@@ -5,5 +5,5 @@ services:
       - "8888:8888"
       - "8050:8050"
     volumes:
-      - /Users/mat_sh2266/projects/options-dashboard:/home/jovyan/work
+      - .:/home/jovyan/work
     working_dir: /home/jovyan/work

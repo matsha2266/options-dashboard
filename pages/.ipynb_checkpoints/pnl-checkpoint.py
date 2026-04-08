@@ -16,17 +16,40 @@ layout = dbc.Container([
                     {"label": "Bull Spread", "value": "bull_spread"}
                 ],
                 value="call"
-            )
+            ),
+            dcc.Dropdown(
+                id="option-type",
+                options=[
+                    {"label": "Call", "value": "call"},
+                    {"label": "Put", "value": "put"},
+                    ],
+                value="call",
+                style={"marginBottom": "15px"}
+            ),
         ], width=4),
 
         dbc.Col([
             html.Label("Strike"),
-            dcc.Slider(id="strike", min=50, max=200, value=100)
+            dcc.Slider(
+                id="strike",
+                min=50,
+                max=200,
+                step=1,
+                value=100,
+                tooltip={"placement": "bottom", "always_visible": True}
+            )
         ], width=4),
 
         dbc.Col([
             html.Label("Premium"),
-            dcc.Slider(id="premium", min=1, max=20, value=5)
+            dcc.Slider(
+                id="premium",
+                min=50,
+                max=200,
+                step=1,
+                value=100,
+                tooltip={"placement": "bottom", "always_visible": True}
+            )
         ], width=4),
     ], className="mb-4"),
 

@@ -2,7 +2,7 @@ from dash import Dash, html, dcc, Input, Output
 import dash_bootstrap_components as dbc
 
 from components.sidebar import create_sidebar
-from pages import dashboard, options, pnl, chart
+from pages import dashboard, options, pnl, chart, learn, greeks
 
 from components.callbacks import register_callbacks
 
@@ -20,6 +20,7 @@ content = html.Div(
 
             dcc.Dropdown(
                 id="timeframe-select",
+                className="dark-dropdown",
                 options=[
                     {"label": "1 Min", "value": "1m"},
                     {"label": "5 Min", "value": "5m"},
@@ -31,7 +32,7 @@ content = html.Div(
                 style={"width": "150px"}
             ),
 
-            html.Div(id="live-price")
+            html.Div(id="live-price", style={"marginLeft": "auto"})
 
         ], 
         style={
@@ -48,14 +49,10 @@ content = html.Div(
 )
 
 app.layout = html.Div([
-    html.Div([
-        dcc.Dropdown(id="strategy", options=[], value="call"),
-    ], style={"display": "none"}),
-    dcc.Interval(id="interval", interval=2000, n_intervals=0),
     dcc.Location(id="url"),
     dcc.Store(id="global-ticker", data="AAPL"),
     dcc.Store(id="timeframe", data="1m"),
-    dcc.Interval(id="interval",interval=5000, n_intervals=0),
+    dcc.Interval(id="interval", interval=2000, n_intervals=0),
     sidebar,
     content
 ])
@@ -72,6 +69,10 @@ def render_page(pathname):
         return pnl.layout
     elif pathname == "/chart":
         return chart.layout
+    elif pathname == "/greeks":
+        return greeks.layout
+    elif pathname == "/learn":
+        return learn.layout
     else:
         return dashboard.layout
 

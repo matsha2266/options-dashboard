@@ -3,15 +3,28 @@ import dash_bootstrap_components as dbc
 
 layout = dbc.Container([
 
-    html.H2("📈 Dashboard"),
+    html.Div([
+        html.P("Market Overview", style={
+            "textTransform": "uppercase",
+            "letterSpacing": "0.14em",
+            "color": "#94a3b8",
+            "marginBottom": "8px",
+            "fontSize": "0.75rem"
+        }),
+        html.H2("Trading Dashboard", style={"marginBottom": "8px"}),
+        html.P(
+            "Track Greek sensitivity, return distributions, and options activity from one consolidated view.",
+            style={"color": "#cbd5e1", "maxWidth": "760px", "marginBottom": "24px"}
+        ),
+    ]),
 
     dbc.Row([
         dbc.Col([
             dcc.Dropdown(
                 id="greek",
-                options=[{"label": g, "value": g} for g in ["Delta","Gamma","Vega"]],
+                options=[{"label": g, "value": g} for g in ["Delta","Gamma","Vega","Theta","Rho"]],
                 value="Delta",
-                className="mb-3"
+                className="dark-dropdown mb-3"
             )
         ], width=12)
     ]),
